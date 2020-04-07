@@ -1,0 +1,5 @@
+<app-player
+  *ngFor="let player of players; trackBy: trackPlayerBy; let i = index"
+  [seat]="seats[i]"
+  [player]="player"
+></app-player>

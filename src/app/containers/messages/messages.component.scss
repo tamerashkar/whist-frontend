@@ -1,0 +1,54 @@
+@import "../../../styles/variables";
+
+@mixin messages() {
+  :host {
+    height: 100vh;
+    overflow-y: scroll;
+
+    .send-message {
+      mat-form-field {
+        width: 100%;
+      }
+    }
+
+    .messages {
+      padding: 12px;
+    }
+
+    .message {
+      width: calc(100% - 16px);
+      padding: 12px 8px;
+      @include flexbox();
+      @include flex-direction(column);
+
+      p {
+        margin: 0;
+        margin-left: 12px;
+      }
+    }
+
+    .message-header {
+      @include flexbox();
+      @include align-items(center);
+    }
+
+    .message-body p {
+      margin-left: 46px;
+    }
+  }
+}
+
+@mixin messages-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  :host {
+    // color: white;
+    // background: green;
+  }
+}
+
+@include messages();
+@include messages-theme(light, $app-light-theme);
+@include messages-theme(dark, $app-dark-theme);

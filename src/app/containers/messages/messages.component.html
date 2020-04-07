@@ -1,0 +1,36 @@
+<div class="messages">
+  <form class="send-message" (ngSubmit)="onSend()">
+    <mat-form-field appearance="fill">
+      <mat-label>Send a message</mat-label>
+      <input
+        matInput
+        name="body"
+        type="text"
+        [formControl]="message"
+        maxlength="255"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+      />
+    </mat-form-field>
+  </form>
+  <div
+    class="message message-{{ message.player?.turn }}"
+    *ngFor="let message of messages$ | async; trackBy: trackBy"
+    @message
+  >
+    <div class="message-header">
+      <app-avatar
+        *ngIf="message.player"
+        class="mini"
+        [position]="message.player?.turn"
+      ></app-avatar>
+      <p class="mat-body-1">{{ message.player?.name }}</p>
+    </div>
+    <div class="message-body">
+      <p class="mat-body-1">
+        {{ message.body }}
+      </p>
+    </div>
+  </div>
+</div>

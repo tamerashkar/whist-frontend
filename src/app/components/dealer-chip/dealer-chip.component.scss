@@ -1,0 +1,33 @@
+@import "../../../styles/variables";
+
+@mixin dealer-chip() {
+  :host {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    border-radius: 50%;
+
+    &:after {
+      content: "★";
+      height: 100%;
+      width: 100%;
+      @include flexbox-center();
+    }
+  }
+}
+
+@mixin dealer-chip-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+    color: white;
+    background: grey;
+    @include mat-elevation(1);
+  }
+}
+
+@include dealer-chip();
+@include dealer-chip-theme(light, $app-light-theme);
+@include dealer-chip-theme(dark, $app-dark-theme);

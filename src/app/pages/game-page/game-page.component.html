@@ -1,0 +1,12 @@
+<ng-container
+  *ngIf="(fetched$ | async) && (game$ | async)"
+  class="game-container"
+>
+  <div class="game">
+    <ng-template #game><app-game></app-game></ng-template>
+    <app-team-selection
+      *ngIf="teamSelection$ | async; else game"
+    ></app-team-selection>
+  </div>
+  <app-messages></app-messages>
+</ng-container>

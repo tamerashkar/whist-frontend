@@ -1,0 +1,74 @@
+@import "../../../styles/variables";
+
+@mixin table() {
+  :host {
+    box-sizing: border-box;
+    border: 15px solid;
+    border-radius: 50px;
+    @include mat-elevation(2);
+
+    app-bidder {
+      z-index: 10;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      @include flexbox-center();
+      @include flex-direction(column);
+    }
+
+    app-table-players {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    app-table-cards {
+      display: block;
+      position: absolute;
+      top: 80px;
+      left: 80px;
+      right: 80px;
+      bottom: 80px;
+    }
+
+    app-dealer-chip {
+      z-index: 10;
+      position: fixed;
+      transition: all 300ms ease;
+    }
+
+    .app-deck-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      margin-top: 48px;
+      margin-left: 48px;
+    }
+
+    app-deck {
+      position: absolute;
+    }
+  }
+}
+@mixin table-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+    background: green;
+    position: relative;
+    border-color: #a95555;
+  }
+}
+
+@include table();
+@include table-theme(light, $app-light-theme);
+@include table-theme(dark, $app-dark-theme);

@@ -1,0 +1,33 @@
+<div class="player player-{{ seat }}" [class.active]="player.id === active?.id">
+  <div class="card-container" #card></div>
+  <div class="card-placeholder-container"></div>
+  <div class="bid-chip-container">
+    <app-chip
+      *ngIf="bidding && player.bid"
+      class="small"
+      [class.elevated]="player.bidWinner"
+      [value]="player.bid"
+      [@chip]="{
+        value: player.bidWinner ? 'winner' : '',
+        params: { rotate: rotate }
+      }"
+    >
+    </app-chip>
+  </div>
+  <div class="info">
+    <app-avatar class="mini" [position]="player.turn"></app-avatar>
+    <p class="name mat-body-2">
+      {{ player.name }}
+    </p>
+    <app-dealer-chip
+      class="dealer-chip-placeholder"
+      [class.visible]="dealer"
+    ></app-dealer-chip>
+    <div class="hand-wins" #handWins>
+      <app-card class="mini" [back]="true"></app-card>
+      <app-card class="mini" [back]="true"></app-card>
+      <app-card class="mini" [back]="true"></app-card>
+      <app-card class="mini" [back]="true"></app-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+@mixin fan($class, $count, $angle) {
+  $offset: $angle / 2;
+  @for $i from 1 through $count {
+    $increment: $angle / ($count + 1);
+    #{$class}:nth-child(#{$i}) {
+      transform: translate(-50%, -50%) rotate(-$offset + $increment * $i);
+    }
+  }
+
+  #{$class} {
+    position: absolute;
+    transform-origin: center 120%;
+    transition: transform 1s ease-out;
+  }
+}
+
+@mixin fans($parent, $card, $count, $angle1, $angle2) {
+  @for $i from 1 through $count {
+    #{$parent}-#{$i} {
+      @include fan($card, $i, $angle1);
+    }
+  }
+}

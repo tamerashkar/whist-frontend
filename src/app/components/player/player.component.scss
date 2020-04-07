@@ -1,0 +1,221 @@
+@import "../../../styles/variables";
+
+.blinking {
+  animation: blink 1.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+}
+@keyframes blink {
+  to {
+    opacity: 0.5;
+  }
+}
+
+@keyframes border-dashed {
+  /* You could think of as "step 1" */
+  0% {
+    border-style: dashed;
+  }
+  /* You could think of as "step 2" */
+  100% {
+    border-style: solid;
+  }
+}
+
+@mixin player() {
+  :host {
+    .player {
+      min-width: 192px;
+      min-height: 192px;
+      position: relative;
+    }
+
+    .card-container,
+    .card-placeholder-container {
+      width: 100%;
+      bottom: 76px;
+      position: absolute;
+      @include flexbox-center();
+    }
+
+    .bid-chip-container {
+      width: 100%;
+      bottom: 76px;
+      position: absolute;
+      @include flexbox-center();
+    }
+
+    .info {
+      bottom: 0;
+      width: 100%;
+      height: 48px;
+      position: absolute;
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(space-between);
+      // color: white;
+      box-sizing: border-box;
+      padding: 0 4px;
+      border-radius: 4px;
+      margin-top: 4px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      // border-left-width: 3px;
+      // border-right-width: 3px;
+      // border-top-width: 8px;
+      // border-bottom-width: 0px;
+    }
+
+    .name {
+      margin: 0;
+      padding: 16px;
+    }
+
+    .dealer-chip-placeholder {
+      opacity: 0;
+      position: relative;
+
+      &.visible {
+        opacity: 1;
+        transition: 1.25s opacity;
+      }
+    }
+
+    .hand-wins,
+    .card-placeholder {
+      opacity: 0;
+    }
+
+    .card.winner {
+      z-index: 10;
+    }
+
+    app-card {
+      // position: absolute;
+    }
+
+    @include fan(".hand-wins app-card", 4, 24deg);
+    .hand-wins {
+      position: absolute;
+      right: -48px;
+    }
+  }
+}
+
+@mixin player-bottom() {
+  .player-bottom {
+    app-card {
+      bottom: 0;
+    }
+  }
+}
+
+@mixin player-right() {
+  .player-right {
+    transform: rotate(270deg);
+
+    app-card {
+      left: 0;
+    }
+
+    .card-container,
+    .card-placeholder-container {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+@mixin player-top() {
+  .player-top {
+    transform: rotate(180deg);
+
+    app-card {
+      top: 0;
+    }
+
+    app-avatar {
+      @include order(3);
+    }
+
+    .card-container,
+    .card-placeholder-container {
+      transform: rotate(180deg);
+    }
+
+    .name {
+      @include order(2);
+      transform: rotate(180deg);
+    }
+
+    .dealer-chip-placeholder {
+      @include order(1);
+    }
+  }
+}
+
+@mixin player-left() {
+  .player-left {
+    transform: rotate(90deg);
+
+    app-card {
+      right: 0;
+    }
+
+    .card-container,
+    .card-placeholder-container {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+@mixin player-theme() {
+  :host {
+    .player-bottom {
+      .info {
+        background: lighten(lightcoral, 30);
+      }
+    }
+
+    .player-right {
+      .info {
+        background: lighten(pink, 30);
+      }
+    }
+
+    .player-top {
+      .info {
+        background: lighten(yellow, 30);
+      }
+    }
+
+    .player-left {
+      .info {
+        background: lighten(orange, 30);
+      }
+    }
+  }
+}
+
+@mixin player-active() {
+  :host {
+    .player.active {
+      .name {
+        // @extend .blinking;
+        // font-weight: 700;
+      }
+
+      .info {
+        // border-style: solid double;
+        // animation: border-dashed 1s infinite alternate;
+        // transition: all 1s;
+      }
+    }
+  }
+}
+
+@include player();
+@include player-bottom();
+@include player-right();
+@include player-top();
+@include player-left();
+@include player-active();
+@include player-theme();

@@ -1,0 +1,92 @@
+<div class="lead">
+  <h1 class="mat-display-1">Select your team</h1>
+</div>
+
+<div class="teams">
+  <div class="team">
+    <div class="team-header">
+      <h3 class="team-name">HOME</h3>
+
+      <button
+        *ngIf="(me$ | async) && (canJoinTeamA$ | async)"
+        mat-button
+        (click)="onAddRobot(1)"
+      >
+        <mat-icon>add_circle</mat-icon> ROBOT
+      </button>
+      <button
+        *ngIf="!(me$ | async)"
+        mat-flat-button
+        [disabled]="!(canJoinTeamA$ | async)"
+        (click)="onJoinTeam(1)"
+      >
+        JOIN TEAM
+      </button>
+    </div>
+    <div
+      *ngFor="let player of teamA$ | async; let i = index"
+      class="team-player"
+    >
+      <app-avatar [position]="i * 2 + 1"></app-avatar>
+      <span class="team-player-name">{{ player.name }}</span>
+    </div>
+    <div
+      *ngFor="let player of missingTeamAPlayers$ | async; let i = index"
+      class="team-player team-player-missing"
+      (click)="onJoinTeam(2)"
+    >
+      <span class="team-player-name">WAITING FOR PLAYER {{ player }}</span>
+    </div>
+  </div>
+  <div class="break">
+    <h3>VS</h3>
+  </div>
+  <div class="team">
+    <div class="team-header">
+      <h3 class="team-name">GUEST</h3>
+      <button
+        *ngIf="(me$ | async) && (canJoinTeamB$ | async)"
+        mat-button
+        (click)="onAddRobot(2)"
+      >
+        <mat-icon>add_circle</mat-icon> ROBOT
+      </button>
+      <button
+        *ngIf="!(me$ | async)"
+        mat-flat-button
+        [disabled]="!(canJoinTeamB$ | async)"
+        (click)="onJoinTeam(2)"
+      >
+        JOIN TEAM
+      </button>
+    </div>
+    <div
+      *ngFor="let player of teamB$ | async; let i = index"
+      class="team-player"
+    >
+      <app-avatar [position]="i * 2 + 2"></app-avatar>
+      <span class="team-player-name">{{ player.name }}</span>
+    </div>
+    <div
+      *ngFor="let player of missingTeamBPlayers$ | async; let i = index"
+      class="team-player team-player-missing"
+      (click)="onJoinTeam(2)"
+    >
+      <span class="team-player-name">WAITING FOR PLAYER {{ player }}</span>
+    </div>
+  </div>
+</div>
+
+<button
+  mat-raised-button
+  class="start-game"
+  color="accent"
+  [disabled]="!(canStartGame$ | async) || !(isHost$ | async)"
+  (click)="onStartGame()"
+>
+  <span *ngIf="canStartGame$ | async">
+    <span *ngIf="isHost$ | async">Start Game</span>
+    <span *ngIf="!(isHost$ | async)">Waiting for host to start game...</span>
+  </span>
+  <span *ngIf="!(canStartGame$ | async)">Waiting for players...</span>
+</button>

@@ -1,0 +1,19 @@
+@import "../../../styles/variables";
+
+@mixin create-game-page() {
+  :host {
+    height: 100vh;
+    width: 100vw;
+    @include flexbox-center();
+
+    h1 {
+      opacity: 0.5;
+    }
+  }
+}
+
+@mixin create-game-page-theme {
+}
+
+@include create-game-page();
+@include create-game-page-theme();

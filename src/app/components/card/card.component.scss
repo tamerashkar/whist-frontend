@@ -1,0 +1,223 @@
+@import "../../../styles/variables";
+
+$gutter: 10px;
+$font-size: 16px;
+
+$card-background: #fff;
+$card-padding: 4px;
+$card-width: 172px;
+$card-height: 240px;
+$card-color-red: #e44145;
+$card-color-black: #252525;
+$card-symbol-size: 40px;
+
+@mixin card() {
+  :host {
+    .card {
+      width: 5em;
+      height: 7em;
+      padding: 2px;
+      display: inline-block;
+      font-size: 18px;
+      text-align: center;
+
+      color: black;
+      background-color: white;
+
+      border-radius: 0.25em;
+      box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      @include mat-elevation(2);
+      position: relative;
+    }
+
+    .back {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .suit-only {
+      display: none;
+    }
+
+    .card.can-play {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .corner {
+      position: absolute;
+      @include flexbox();
+      @include flex-direction(column);
+      @include align-items(center);
+      @include justify-content(center);
+    }
+
+    .corner-left {
+      left: 4px;
+      top: 8px;
+    }
+
+    .corner-right {
+      right: 4px;
+      bottom: 8px;
+    }
+
+    .value {
+      margin: 0;
+    }
+
+    .front {
+      height: 100%;
+    }
+
+    .suits {
+      height: 100%;
+      margin: 0 auto;
+      @include flexbox();
+      @include justify-content(center);
+
+      .suit {
+        opacity: 0;
+
+        &.removed {
+          display: none;
+        }
+
+        &.visible {
+          opacity: 1;
+        }
+      }
+    }
+
+    .suit-column {
+      margin: 14px -1px;
+      @include flexbox();
+      @include flex-direction(column);
+      @include justify-content(space-between);
+    }
+
+    .suit-column:nth-of-type(2) {
+      @include justify-content(space-around);
+    }
+
+    .faced-suit {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: calc(100% - 2px);
+      overflow: hidden;
+      width: 100%;
+      margin: auto;
+    }
+
+    .suit-for-face {
+      position: absolute;
+      &.top-left {
+        left: 18px;
+        top: 16px;
+      }
+
+      &.bottom-right {
+        right: 18px;
+        bottom: 14px;
+      }
+    }
+
+    .suit {
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .suit-small {
+      line-height: 12px;
+      font-size: 12px;
+    }
+
+    .value {
+      line-height: 16px;
+      font-size: 16px;
+    }
+
+    .corner .suit {
+      margin: 0;
+      margin-top: 0px;
+    }
+
+    .rotated {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@mixin card-back() {
+  :host(.card-back) {
+    .back {
+      display: unset;
+    }
+
+    .suit-only,
+    .front {
+      display: none;
+    }
+  }
+}
+
+@mixin card-suit() {
+  :host(.card-suit-only) {
+    .suit-only {
+      display: unset;
+
+      .suit {
+        font-size: 64px;
+      }
+    }
+
+    .back,
+    .front {
+      display: none;
+    }
+  }
+}
+
+@mixin card-extra-elevation() {
+  :host(.extra-elevation) {
+    .card {
+      @include mat-elevation(4);
+    }
+  }
+}
+
+@mixin card-mini() {
+  :host(.mini) {
+    .suit-only {
+      .suit {
+        font-size: 18px;
+      }
+    }
+
+    .card {
+      width: calc(5em / 3.5);
+      height: calc(7em / 3.5);
+    }
+  }
+}
+
+@mixin card-theme() {
+  :host {
+    .card--heart,
+    .card--diamond {
+      color: red;
+    }
+  }
+}
+
+@include card();
+@include card-back();
+@include card-suit();
+@include card-mini();
+@include card-extra-elevation();
+@include card-theme();

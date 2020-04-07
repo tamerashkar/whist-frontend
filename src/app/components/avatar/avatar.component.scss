@@ -1,0 +1,89 @@
+@import "../../../styles/variables";
+
+@mixin avatar() {
+  :host {
+    .avatar {
+      width: 48px;
+      height: 48px;
+      background-color: lightcoral;
+      border-radius: 100%;
+      position: relative;
+      box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.4);
+      z-index: 20;
+
+      &:after {
+        content: "";
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.1);
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translatex(-50%) translatey(-50%);
+        transform: translatex(-50%) translatey(-50%);
+        border-radius: 100%;
+        box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+@mixin avatar-mini() {
+  :host(.mini) {
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background-color: lightcoral;
+      border-radius: 100%;
+      position: relative;
+      box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.4);
+      z-index: 20;
+      // margin-top: 24px;
+
+      // transform: scale(0.3) !important;
+
+      &:after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.1);
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translatex(-50%) translatey(-50%);
+        transform: translatex(-50%) translatey(-50%);
+        border-radius: 100%;
+        box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+@mixin avatar-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+    .avatar-1 {
+      background: lightcoral;
+    }
+
+    .avatar-2 {
+      background: pink;
+    }
+
+    .avatar-3 {
+      background: yellow;
+    }
+
+    .avatar-4 {
+      background: orange;
+    }
+  }
+}
+
+@include avatar();
+@include avatar-mini();
+@include avatar-theme(light, $app-light-theme);
+@include avatar-theme(dark, $app-dark-theme);

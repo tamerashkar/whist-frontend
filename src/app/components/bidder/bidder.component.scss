@@ -1,0 +1,28 @@
+@import "../../../styles/variables";
+
+@mixin bidder() {
+  :host {
+    mat-card {
+      max-width: 128px;
+      @include mat-elevation(16);
+
+      button {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+@mixin bidder-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+  }
+}
+
+@include bidder();
+@include bidder-theme(light, $app-light-theme);
+@include bidder-theme(dark, $app-dark-theme);

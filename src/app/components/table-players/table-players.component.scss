@@ -1,0 +1,59 @@
+@import "../../../styles/variables";
+
+@mixin table-players() {
+  :host {
+    app-player {
+      z-index: 2;
+      position: absolute;
+      @include flexbox-center();
+    }
+
+    app-player:nth-of-type(1) {
+      bottom: 0;
+      width: 100%;
+
+      app-card {
+        bottom: 80px;
+      }
+    }
+
+    app-player:nth-of-type(2) {
+      right: 0;
+      height: 100%;
+
+      app-card {
+        right: 80px;
+      }
+    }
+
+    app-player:nth-of-type(3) {
+      top: 0;
+      width: 100%;
+
+      app-card {
+        top: 80px;
+      }
+    }
+
+    app-player:nth-of-type(4) {
+      left: 0;
+      height: 100%;
+
+      app-card {
+        left: 80px;
+      }
+    }
+  }
+}
+@mixin table-players-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+  }
+}
+
+@include table-players();
+@include table-players-theme(light, $app-light-theme);
+@include table-players-theme(dark, $app-dark-theme);

@@ -1,0 +1,115 @@
+<div [class.fan-full]="fan$ | async">
+  <div class="landing">
+    <div class="background"></div>
+    <div class="background-content">
+      <div class="landing-header">
+        <div class="cards">
+          <app-card
+            [card]="{ suit: 'Heart', value: 2 }"
+            [back]="true"
+          ></app-card>
+          <app-card
+            [card]="{ suit: 'Heart', value: 2 }"
+            [back]="true"
+          ></app-card>
+          <app-card
+            [card]="{ suit: 'Heart', value: 2 }"
+            [back]="true"
+          ></app-card>
+          <app-card
+            [suitOnly]="true"
+            [card]="{ suit: 'Heart', value: 2 }"
+          ></app-card>
+        </div>
+        <h1 class="mat-display-4">
+          Whist
+        </h1>
+      </div>
+      <h3 class="mat-display-1">The ultimate multiplayer card game</h3>
+
+      <div class="actions">
+        <a mat-button color="primary" [routerLink]="['/game/create']"
+          >CREATE A GAME</a
+        >
+        <span class="mat-caption" style="margin: 0 12px;"></span>
+        <a mat-raised-button color="primary" [routerLink]="['/game/join']"
+          >JOIN A GAME</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="how-to-play">
+    <h2 class="mat-display-1">How to Play</h2>
+    <h4><strong>Rules</strong></h4>
+    <p>
+      Whist, a simple but fun card game, is typically played in pairs with your
+      teammate sitting across from you.
+    </p>
+    <h4><strong>Starting the game</strong></h4>
+    <p>
+      Each player is dealt 13 cards. The first player to start the round is the
+      person the right of the dealer. A round is over after all the players have
+      played their cards. After each round, the dealer moves the to right and
+      the cards are dealt again.
+    </p>
+    <h4><strong>Bidding</strong></h4>
+    <p>
+      Before the round starts, players starting from the right of the dealer bid
+      on the number of hands they believe they can win. The player can pass or
+      bid the number of hands their team will win. The minimum bid is 7 and
+      every player must bid higher than the previous bid with the exception of
+      the dealer who can match the highest bid.
+    </p>
+    <h4><strong>Trump suit</strong></h4>
+    <p>
+      The bid winner plays the first card. The card that they play determines
+      the trump suit. If a player plays the King of Hearts, the trump suit is
+      the Heart. The trump suit is more valued than any of the other suits with
+      the 2 of the trump suit being higher than the Ace of any other suit.
+    </p>
+    <h4><strong>Competing</strong></h4>
+    <p>
+      Each hand a player plays one card and the winner of the hand is determined
+      by the highest valued card. The team with the winning card gains a point.
+      The winner of this hand plays the first card for the next hand.
+    </p>
+    <h4><strong>Scoring</strong></h4>
+    <p>
+      At the end of the round after all the cards are played, if the team with
+      the winning bid won enough hands to match their bid, they keep the points.
+      Otherwise they lose their bid and if the other team scores at least 7
+      points. They keep those points.
+    </p>
+    <h4><strong>Winning</strong></h4>
+    <p>
+      After each round, the score is added up. When a team reaches 52 points,
+      they win the game. Have fun and good luck!
+    </p>
+  </div>
+  <div class="copyright mat-caption">
+    © 2020 Ready Up Today. Built with
+    <div class="cards">
+      <app-card
+        class="mini"
+        [card]="{ suit: 'Heart', value: 2 }"
+        [back]="true"
+      ></app-card>
+      <app-card
+        class="mini"
+        [card]="{ suit: 'Heart', value: 2 }"
+        [back]="true"
+      ></app-card>
+      <app-card
+        class="mini"
+        [card]="{ suit: 'Heart', value: 2 }"
+        [back]="true"
+      ></app-card>
+      <app-card
+        class="mini"
+        [suitOnly]="true"
+        [card]="{ suit: 'Heart', value: 2 }"
+      ></app-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div
+  class="cards cards-{{ (cards$ | async)?.length }}"
+  cdkDropList
+  [class.cards-playable]="turnToPlayCard$ | async"
+>
+  <app-card
+    *ngFor="let card of cards$ | async; trackBy: trackCardBy; let i = index"
+    cdkDrag
+    [cdkDragData]="card"
+    [class.non-transform]="(selected$ | async) === i"
+    [card]="card"
+    [selected]="(selected$ | async) === i"
+    [cardPlayable]="
+      (!(selected$ | async) || (selected$ | async) === i) &&
+      (cardWasRequested$ | async) &&
+      (turnToPlayCard$ | async)
+    "
+    (cardSelected)="onCardSelected(i)"
+    (cardPlayed)="onCardPlayed($event)"
+  ></app-card>
+</div>

@@ -1,0 +1,24 @@
+<form (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-title>
+      <h2>Enter game code</h2>
+    </mat-card-title>
+
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          name="game"
+          type="number"
+          [formControl]="id"
+          required
+          appAutofocus
+        />
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">JOIN GAME</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

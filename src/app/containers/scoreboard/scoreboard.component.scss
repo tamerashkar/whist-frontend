@@ -1,0 +1,29 @@
+@import "../../../styles/variables";
+
+@mixin scoreboard() {
+  :host {
+    @include flexbox-center();
+    @include flex-direction(column);
+
+    .score {
+      @include flexbox-center();
+    }
+
+    app-team {
+      margin: 0 12px;
+    }
+  }
+}
+
+@mixin scoreboard-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+  }
+}
+
+@include scoreboard();
+@include scoreboard-theme(light, $app-light-theme);
+@include scoreboard-theme(dark, $app-dark-theme);

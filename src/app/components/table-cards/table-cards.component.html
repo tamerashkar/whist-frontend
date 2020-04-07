@@ -1,0 +1,7 @@
+<div *ngFor="let player of players; let i = index">
+  <app-card
+    cdkDropList
+    [card]="player.card"
+    [class.hidden]="!player.card"
+  ></app-card>
+</div>

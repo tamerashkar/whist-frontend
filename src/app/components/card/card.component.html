@@ -1,0 +1,129 @@
+<div
+  class="card"
+  [class.can-play]="cardPlayable"
+  [class.card--club]="club"
+  [class.card--heart]="heart"
+  [class.card--spade]="spade"
+  [class.card--diamond]="diamond"
+  (click)="onSelect()"
+  [@hover]="cardPlayable ? hovering : 'default'"
+>
+  <div class="suit-only">
+    <p class="suit">{{ suit }}</p>
+  </div>
+  <img *ngIf="back" class="back" src="assets/images/back.png" alt="" />
+  <div class="front">
+    <p *ngIf="faceCard" class="suit suit-for-face top-left">
+      {{ suit }}
+    </p>
+    <p *ngIf="faceCard" class="rotated suit suit-for-face bottom-right">
+      {{ suit }}
+    </p>
+    <img
+      *ngIf="value === 'J'"
+      class="faced-suit"
+      [src]="getFacedSuitImagePath('jack', card.suit)"
+    />
+    <img
+      *ngIf="value === 'Q'"
+      class="faced-suit"
+      [src]="getFacedSuitImagePath('queen', card.suit)"
+    />
+    <img
+      *ngIf="value === 'K'"
+      class="faced-suit"
+      [src]="getFacedSuitImagePath('king', card.suit)"
+    />
+    <div class="corner corner-left">
+      <h3 class="value">{{ value }}</h3>
+      <p class="suit suit-small">
+        {{ suit }}
+      </p>
+    </div>
+    <div class="suits">
+      <div class="suit-column">
+        <p
+          class="suit"
+          [class.visible]="placements[0][0] == 1"
+          [class.removed]="placements[0][0] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit"
+          [class.visible]="placements[0][1] == 1"
+          [class.removed]="placements[0][1] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit rotated"
+          [class.visible]="placements[0][2] == 1"
+          [class.removed]="placements[0][2] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p class="suit rotated" [class.visible]="placements[0][3] == 1">
+          {{ suit }}
+        </p>
+      </div>
+      <div class="suit-column">
+        <p
+          class="suit"
+          [class.visible]="placements[1][0] == 1"
+          [class.removed]="placements[1][0] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit"
+          [class.visible]="placements[1][1] == 1"
+          [class.removed]="placements[1][1] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit rotated"
+          [class.visible]="placements[1][2] == 1"
+          [class.removed]="placements[1][2] == -1"
+        >
+          {{ suit }}
+        </p>
+      </div>
+      <div class="suit-column">
+        <p
+          class="suit"
+          [class.visible]="placements[2][0] == 1"
+          [class.removed]="placements[2][0] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit"
+          [class.visible]="placements[2][1] == 1"
+          [class.removed]="placements[2][1] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit rotated"
+          [class.visible]="placements[2][2] == 1"
+          [class.removed]="placements[2][2] == -1"
+        >
+          {{ suit }}
+        </p>
+        <p
+          class="suit rotated"
+          [class.visible]="placements[2][3] == 1"
+          [class.removed]="placements[2][3] == -1"
+        >
+          {{ suit }}
+        </p>
+      </div>
+    </div>
+    <div class="corner corner-right rotated">
+      <h3 class="value">{{ value }}</h3>
+      <div class="suit suit-small">{{ suit }}</div>
+    </div>
+  </div>
+</div>

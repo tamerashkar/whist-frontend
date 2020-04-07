@@ -1,0 +1,14 @@
+<div class="teams">
+  <div class="team">
+    <h1 class="mat-display-4 team-score">{{ homeTeamPoints$ | async }}</h1>
+    <h2 class="mat-display-2 team-name">HOME</h2>
+  </div>
+  <div class="team winner">
+    <h1 class="mat-display-4 team-score">{{ guestTeamPoints$ | async }}</h1>
+    <h2 class="mat-display-2 team-name">GUEST</h2>
+  </div>
+</div>
+
+<div class="credits">
+  <h3 #creditsText class="mat-title"></h3>
+</div>

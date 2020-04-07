@@ -1,0 +1,42 @@
+@import "../../../styles/variables";
+
+@mixin login-page() {
+  :host {
+    width: 100vw;
+    height: 100vh;
+    @include flexbox-center();
+
+    form {
+      @include flexbox();
+    }
+
+    mat-card {
+      @include flex(1);
+      min-width: 256px;
+    }
+
+    mat-card-content {
+      @include flexbox();
+      @include flex-direction(column);
+    }
+
+    mat-card-actions {
+      text-align: center;
+    }
+
+    mat-form-field {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+@mixin login-page-theme {
+  :host {
+    .right {
+      background: #eaeaea;
+    }
+  }
+}
+
+@include login-page();
+@include login-page-theme();

@@ -1,0 +1,30 @@
+<div class="team">
+  <ng-container *ngIf="trumpSuit">
+    <h3 class="team-hands-wins mat-caption">
+      <app-odometer [value]="hands"></app-odometer>
+    </h3>
+    <div class="team-hands">
+      <div class="cards">
+        <app-card class="mini" [card]="card" [back]="true"></app-card>
+        <app-card class="mini" [card]="card" [back]="true"></app-card>
+        <app-card class="mini" [card]="card" [back]="true"></app-card>
+        <app-card
+          class="mini"
+          [card]="card"
+          [back]="true"
+          [suitOnly]="bid"
+        ></app-card>
+      </div>
+    </div>
+  </ng-container>
+  <app-chip
+    class="team-bid mini"
+    [class.hidden]="!bid"
+    [value]="bid"
+    @chip
+  ></app-chip>
+  <p class="team-name">{{ name }}</p>
+  <h1 class="team-score mat-title">
+    <app-odometer [value]="score"></app-odometer>
+  </h1>
+</div>

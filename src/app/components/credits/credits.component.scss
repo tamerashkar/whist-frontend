@@ -1,0 +1,99 @@
+@import "../../../styles/variables";
+
+@mixin credits() {
+  :host {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    z-index: 1000;
+    @include flexbox();
+    @include flex-direction(column);
+    background: white;
+    transition: all 1s ease;
+    @include align-items(center);
+    padding-top: 256px;
+
+    .teams,
+    .players {
+      @include flexbox();
+    }
+
+    .team,
+    .team-players {
+      box-sizing: border-box;
+      @include flex-direction(column);
+      border: 5px solid transparent;
+    }
+
+    .team {
+      opacity: 0.7;
+      padding: 48px;
+      @include flexbox-center();
+    }
+
+    .team:first-of-type {
+      @include align-items(flex-end);
+    }
+
+    .team:last-of-type {
+      @include align-items(flex-start);
+    }
+
+    .team-name,
+    .team-player,
+    .team-score {
+      margin: 0;
+    }
+
+    .team-players {
+      @include flexbox();
+    }
+
+    .team-player {
+      @include flexbox();
+      @include align-items(center);
+      app-avatar {
+        margin-right: 32px;
+      }
+    }
+
+    .team.winner {
+      opacity: 1;
+      color: white;
+      background: black;
+    }
+
+    .credits {
+      margin-top: 48px;
+      text-align: center;
+      max-width: 416px;
+    }
+  }
+}
+
+@mixin credits-close-curtains() {
+  :host(.close-curtains) {
+    background: black;
+
+    .credits {
+      display: none;
+    }
+
+    .teams {
+      display: none;
+    }
+
+    .team,
+    .team-players {
+      color: white;
+    }
+
+    .team.winner {
+      border-color: white;
+    }
+  }
+}
+
+@include credits();
+@include credits-close-curtains();

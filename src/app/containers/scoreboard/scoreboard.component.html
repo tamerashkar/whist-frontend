@@ -1,0 +1,17 @@
+<div class="score">
+  <app-team
+    name="HOME"
+    [score]="homeTeamPoints$ | async"
+    [bid]="homeTeamBid$ | async"
+    [hands]="homeTeamHandWins$ | async"
+    [trumpSuit]="trumpSuit$ | async"
+  ></app-team>
+  <app-team
+    name="GUEST"
+    [score]="guestTeamPoints$ | async"
+    [bid]="guestTeamBid$ | async"
+    [hands]="guestTeamHandWins$ | async"
+    [trumpSuit]="trumpSuit$ | async"
+    [inverse]="true"
+  ></app-team>
+</div>

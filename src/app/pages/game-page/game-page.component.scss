@@ -1,0 +1,36 @@
+@import "../../../styles/variables";
+
+@mixin game-page() {
+  :host {
+    @include flexbox();
+    .game {
+      @include flex(1);
+    }
+
+    app-messages {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+}
+
+@mixin game-page-mobile() {
+  @include for-tablet-landscape-down {
+    :host {
+      @include flex-direction(column);
+      app-messages {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@mixin game-page-theme {
+  :host {
+  }
+}
+
+@include game-page();
+@include game-page-mobile();
+@include game-page-theme();

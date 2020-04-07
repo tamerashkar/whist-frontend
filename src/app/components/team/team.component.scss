@@ -1,0 +1,131 @@
+@import "../../../styles/variables";
+
+@mixin team-base() {
+  :host {
+    @include fan(".cards app-card", 4, 45deg);
+
+    .team {
+      width: 100%;
+      margin: 0 12px;
+      @include flexbox();
+      @include align-items(center);
+    }
+
+    .team-name {
+      margin: 0;
+      @include flex(1);
+    }
+
+    .team-score {
+      margin: 0;
+    }
+
+    .team-bid.hidden {
+      opacity: 0;
+    }
+
+    .team-hands {
+      margin-top: -8px;
+      @include flexbox-center();
+    }
+
+    .team-hands-wins {
+      margin: 0;
+    }
+
+    .cards img {
+      width: 24px;
+      height: 32px;
+    }
+  }
+}
+
+@mixin team() {
+  :host:not(.inverse) {
+    .team-score {
+      @include order(5);
+    }
+
+    .team-name {
+      @include order(4);
+      text-align: right;
+      margin-right: 24px;
+    }
+
+    .team-bid {
+      @include order(3);
+    }
+
+    .team-hands {
+      @include order(2);
+      margin-right: 48px;
+    }
+
+    .team-hands-wins {
+      @include order(1);
+      margin-right: 32px;
+    }
+  }
+}
+
+@mixin team-inverse() {
+  :host(.inverse) {
+    .team-score {
+      @include order(1);
+    }
+
+    .team-name {
+      @include order(2);
+      margin-left: 32px;
+    }
+
+    .team-bid {
+      @include order(3);
+    }
+
+    .team-hands {
+      @include order(4);
+      margin-left: 48px;
+    }
+
+    .team-hands-wins {
+      @include order(5);
+      margin-left: 32px;
+    }
+  }
+}
+
+@mixin team-mobile() {
+  @include for-tablet-landscape-down {
+    :host {
+      .cards {
+        display: none;
+      }
+
+      .team-hands-wins {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+  }
+}
+
+@mixin team-theme($name, $theme) {
+  $accent: map-get($theme, accent);
+  $is-dark: map-get($theme, is-dark);
+  $background: map-get($theme, background);
+
+  .#{$name} :host {
+    .team-score,
+    .team-hand-wins {
+      font-family: "Roboto";
+    }
+  }
+}
+
+@include team-base();
+@include team();
+@include team-inverse();
+@include team-mobile();
+@include team-theme(light, $app-light-theme);
+@include team-theme(dark, $app-dark-theme);

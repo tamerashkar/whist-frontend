@@ -1,0 +1,56 @@
+@import "../../../styles/variables";
+
+@mixin cards() {
+  :host {
+    @include fans(".cards", "app-card", 13, 135deg, 180deg);
+
+    .cards {
+      @include flexbox();
+      @include justify-content(center);
+      margin-top: -50px;
+    }
+
+    app-card {
+      margin-left: 50px;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
+    }
+  }
+}
+
+@mixin cards-mobile() {
+  @include for-phone-down {
+    :host {
+      .cards {
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+
+        app-card {
+          position: absolute;
+          transition: left 300ms;
+        }
+
+        @for $i from 1 through 13 {
+          app-card:nth-child(#{$i}) {
+            z-index: $i;
+            left: #{20 * $i}px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin cards-theme() {
+  :host {
+  }
+}
+
+@include cards();
+// @include cards-mobile();
+@include cards-theme();

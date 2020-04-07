@@ -1,0 +1,21 @@
+<app-dealer-chip [fixed]="true" #dealerChipComponent></app-dealer-chip>
+
+<div class="app-deck-container">
+  <app-deck
+    (cardDealt)="onCardDealt($event)"
+    (cardsDealt)="onCardsDealt()"
+  ></app-deck>
+</div>
+
+<app-bidder
+  *ngIf="(bidWasRequested$ | async) && (myTurnToBid$ | async)"
+  class="bid"
+  [minimum]="minimumBid$ | async"
+  (bidSelected)="onSelectBid($event)"
+>
+</app-bidder>
+
+<ng-container *ngIf="players$ | async as players">
+  <app-table-cards [players]="players"></app-table-cards>
+  <app-table-players [players]="players"></app-table-players>
+</ng-container>

@@ -1,0 +1,22 @@
+@import "../../../styles/variables";
+
+@mixin join-game-page() {
+  :host {
+    height: 100vh;
+    width: 100vw;
+    @include flexbox-center();
+
+    mat-card-actions {
+      @include flexbox-center();
+    }
+  }
+}
+
+@mixin join-game-page-theme {
+  :host {
+    background: green;
+  }
+}
+
+@include join-game-page();
+@include join-game-page-theme();

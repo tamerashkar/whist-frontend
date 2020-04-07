@@ -1,0 +1,79 @@
+@import "../../../styles/variables";
+
+@mixin chip() {
+  :host {
+    .chip {
+      height: 140px;
+      width: 140px;
+      border-radius: 50%;
+      border: 7px dashed white;
+      transition: all 1s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: "Lato", sans-serif;
+      font-size: 26px;
+      margin: 0px 8px;
+      background-color: red;
+    }
+
+    div span {
+      border: 3px dashed white;
+      height: 120px;
+      width: 120px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 120px;
+    }
+  }
+
+  :host(.small) {
+    .chip {
+      height: 32px;
+      width: 32px;
+      font-size: 12px;
+      border-width: 2px;
+    }
+
+    div span {
+      height: 28px;
+      width: 28px;
+      line-height: 28px;
+      border-width: 1px;
+    }
+  }
+
+  :host(.mini) {
+    .chip {
+      height: 24px;
+      width: 24px;
+      font-size: 12px;
+      border-width: 2px;
+    }
+
+    div span {
+      height: 20px;
+      width: 20px;
+      line-height: 20px;
+      border-width: 0px;
+    }
+  }
+}
+
+@mixin chip-elevated() {
+  :host(.elevated) {
+    .chip {
+      @include mat-elevation(4);
+    }
+  }
+}
+
+@mixin chip-theme() {
+  :host {
+  }
+}
+
+@include chip();
+@include chip-elevated();
+@include chip-theme();

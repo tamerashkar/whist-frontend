@@ -1,0 +1,14 @@
+<mat-card>
+  <p>What is your bid?</p>
+  <div class="bid-amounts">
+    <button
+      *ngFor="let bid of bids"
+      mat-flat-button
+      color="warn"
+      [disabled]="bid.amount === 0 ? false : bid.amount < minimum"
+      (click)="onSelectBid(bid)"
+    >
+      {{ bid.label }}
+    </button>
+  </div>
+</mat-card>
