@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'game',
     canActivate: [Authenticated],
     resolve: {
-      hero: UserResolver
+      user: UserResolver
     },
     loadChildren: () =>
       import('./pages/game-page/game-page.module').then(m => m.GamePageModule)
